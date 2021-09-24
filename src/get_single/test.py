@@ -1,12 +1,12 @@
-import unittest
+from utils import SkyProTestCase
 
-import task
+from .task import app
 
 
-class TestDoubleMethods(unittest.TestCase):
+class TestDoubleMethods(SkyProTestCase):
 
     def setUp(self):
-        self.app = task.app.test_client()
+        self.app = app.test_client()
         self.result = self.app.get('/users/1', follow_redirects=True)
 
     def test_foo_page_is_available(self):
@@ -34,10 +34,10 @@ class TestDoubleMethods(unittest.TestCase):
                          'Проверьте что местоположение пользователя возвращается корректно')
 
 
-class Test404Methods(unittest.TestCase):
+class Test404Methods(SkyProTestCase):
 
     def setUp(self):
-        self.app = task.app.test_client()
+        self.app = app.test_client()
         self.result = self.app.get('/users/0', follow_redirects=True)
 
     def test_404(self):

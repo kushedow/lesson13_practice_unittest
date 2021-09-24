@@ -1,12 +1,12 @@
-import unittest
+from utils import SkyProTestCase
 
-import task
+from .task import app, status
 
 
-class TestDoubleMethods(unittest.TestCase):
+class TestDoubleMethods(SkyProTestCase):
 
     def setUp(self):
-        self.app = task.app.test_client()
+        self.app = app.test_client()
 
         self.result = self.app.post('/count/', follow_redirects=True, data={})
         self.result = self.app.post('/count/', follow_redirects=True, data={})
@@ -36,5 +36,5 @@ class TestDoubleMethods(unittest.TestCase):
 
     def test_foo_page_returns_correct_value(self):
         self.assertEqual(
-            self.result.json.get('count'), task.status.get("count"),
-            ('Проверьте что запросы считаются верно'))
+            self.result.json.get('count'), status.get("count"),
+            'Проверьте что запросы считаются верно')

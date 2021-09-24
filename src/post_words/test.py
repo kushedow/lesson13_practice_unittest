@@ -1,12 +1,12 @@
-import unittest
+from utils import SkyProTestCase
 
-import task
+from .task import app
 
 
-class TestPostWordsMethods(unittest.TestCase):
+class TestPostWordsMethods(SkyProTestCase):
 
     def setUp(self):
-        self.app = task.app.test_client()
+        self.app = app.test_client()
         self.words = self.app.post('/', json={"word": "one"})
         self.words = self.app.post('/', json={"word": "two"})
 
