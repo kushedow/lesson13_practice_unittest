@@ -2,6 +2,7 @@ import unittest
 
 import task
 
+
 class TestPostWordsMethods(unittest.TestCase):
 
     def setUp(self):
@@ -30,5 +31,4 @@ class TestPostWordsMethods(unittest.TestCase):
         self.assertTrue(
             "one" in self.words.json and "two" in self.words.json,
             ('Проверьте что при обращении на страницу "/foo"'
-             'в возращаемом списке лежат правильные слова'))
-
+             'в возвращаемом списке лежат правильные слова'))

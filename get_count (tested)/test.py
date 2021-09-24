@@ -1,4 +1,5 @@
 import unittest
+
 import task
 
 
@@ -13,6 +14,7 @@ class TestCountMethods(unittest.TestCase):
 
     def test_value(self):
         self.assertEqual(self.result.json.get("count"), 4, 'Проверьте, что количество пользователей возвращается верно')
+
 
 if __name__ == '__main__':
     unittest.main()
