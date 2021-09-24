@@ -1,14 +1,13 @@
-import unittest
+from utils import SkyProTestCase
 
-import task
+from .task import app
 
 
-class TestDoubleMethods(unittest.TestCase):
+class TestDoubleMethods(SkyProTestCase):
 
     def setUp(self):
-        self.app = task.app.test_client()
+        self.app = app.test_client()
         self.result = self.app.get('/users/1', follow_redirects=True)
-
 
     def test_foo_page_is_available(self):
         self.assertEqual(
@@ -27,22 +26,21 @@ class TestDoubleMethods(unittest.TestCase):
             ('Проверьте что при запросе на страницу "/users/1"'
              'возвращаемые данные являются словарем'))
 
-
     def test_returns_correct_value(self):
         data = self.result.json
         self.assertEqual(data.get('name'), "Alice", 'Проверьте что имя пользователя возвращается корректно')
         self.assertEqual(data.get('age'), 16, 'Проверьте что возраст пользователя возвращается корректно')
-        self.assertEqual(data.get('location'), "Moscow", 'Проверьте что местоположение пользователя возвращается корректно')
+        self.assertEqual(data.get('location'), "Moscow",
+                         'Проверьте что местоположение пользователя возвращается корректно')
 
 
-class Test404Methods(unittest.TestCase):
+class Test404Methods(SkyProTestCase):
 
     def setUp(self):
-        self.app = task.app.test_client()
+        self.app = app.test_client()
         self.result = self.app.get('/users/0', follow_redirects=True)
 
-
     def test_404(self):
-         self.assertEqual(
-            self.result.status_code, 404, ('При несуществующем пользователе должна падать 404')
-         )
+        self.assertEqual(
+            self.result.status_code, 404, 'При несуществующем пользователе должна падать 404'
+        )

@@ -1,11 +1,12 @@
-import unittest
+from utils import SkyProTestCase
 
-import task
+from .task import app
 
-class TestPostWordsMethods(unittest.TestCase):
+
+class TestPostWordsMethods(SkyProTestCase):
 
     def setUp(self):
-        self.app = task.app.test_client()
+        self.app = app.test_client()
         self.words = self.app.post('/', json={"word": "one"})
         self.words = self.app.post('/', json={"word": "two"})
 
@@ -30,5 +31,4 @@ class TestPostWordsMethods(unittest.TestCase):
         self.assertTrue(
             "one" in self.words.json and "two" in self.words.json,
             ('Проверьте что при обращении на страницу "/foo"'
-             'в возращаемом списке лежат правильные слова'))
-
+             'в возвращаемом списке лежат правильные слова'))

@@ -4,7 +4,7 @@ import unittest
 class StatMixin:
     def send_stat(self, result):
         if result.wasSuccessful():
-            print('ready')
+            pass
 
 
 class SkyProTestCase(StatMixin, unittest.TestCase):
