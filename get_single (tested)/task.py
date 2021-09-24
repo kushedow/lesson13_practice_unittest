@@ -10,12 +10,7 @@ users = {
     4: {"name": "Denis", "age": 27, "location": "Ufa"},
 }
 
-
-@app.route('/count-users/')
-def count_users():
-    response = {"count": len(users)}
-    return jsonify(response)
-
+...
 
 if __name__ == '__main__':
     app.run()

@@ -7,8 +7,9 @@ class TestDoubleMethods(unittest.TestCase):
 
     def setUp(self):
         self.app = task.app.test_client()
-        self.result = self.app.post('/count')
-        self.result = self.app.post('/count')
+
+        self.result = self.app.post('/count/', follow_redirects=True, data={})
+        self.result = self.app.post('/count/', follow_redirects=True, data={})
 
     def test_foo_page_is_available(self):
         self.assertEqual(
@@ -35,5 +36,5 @@ class TestDoubleMethods(unittest.TestCase):
 
     def test_foo_page_returns_correct_value(self):
         self.assertEqual(
-            self.result.json.get('count'), "ok",
+            self.result.json.get('count'), task.status.get("count"),
             ('Проверьте что запросы считаются верно'))

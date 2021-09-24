@@ -11,13 +11,7 @@ users = {
 }
 
 
-@app.route('/users/<int:uid>/')
-def get_user(uid):
-    response = users.get(uid, False)
-    if response:
-        return jsonify(response), 200
-    return jsonify(""), 404
-
+...
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=5010)
